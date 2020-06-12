@@ -30,13 +30,12 @@ let
             })];
           };
       mkGhcide = args@{...}:
-        let packages = mkPackages ({ghc = pkgs.haskell-nix.compiler.ghc865; stackYaml = "stack.yaml"; } // args);
+        let packages = mkPackages ({ghc = pkgs.haskell-nix.compiler.ghc883; stackYaml = "stack.yaml"; } // args);
         in packages.ghcide.components.exes.ghcide // { inherit packages; };
     in { export = {
-          ghcide-ghc883 = mkGhcide { ghc = pkgs.haskell-nix.compiler.ghc883; stackYaml = "stack88.yaml"; };
-          ghcide-ghc865 = mkGhcide { ghc = pkgs.haskell-nix.compiler.ghc865; stackYaml = "stack.yaml"; };
-          ghcide-ghc844 = mkGhcide { ghc = pkgs.haskell-nix.compiler.ghc844; stackYaml = "stack84.yaml"; };
-          hie-bios = (mkPackages { ghc = pkgs.haskell-nix.compiler.ghc865; stackYaml = "stack.yaml"; }).hie-bios.components.exes.hie-bios;
+          ghcide-ghc883 = mkGhcide { ghc = pkgs.haskell-nix.compiler.ghc883; stackYaml = "stack.yaml"; };
+          # ghcide-ghc865 = mkGhcide { ghc = pkgs.haskell-nix.compiler.ghc865; stackYaml = "stack86.yaml"; };
+          hie-bios = (mkPackages { ghc = pkgs.haskell-nix.compiler.ghc883; stackYaml = "stack.yaml"; }).hie-bios.components.exes.hie-bios;
           inherit mkGhcide;
          };
 
